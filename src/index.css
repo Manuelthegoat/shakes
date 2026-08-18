@@ -1,13 +1,42 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  /* Deep navy — header, nav, footer */
+  --navy-950: #0a1f3d;
+  --navy-900: #0d2a52;
+  --navy-800: #123a6e;
+
+  /* Chase-style brand blue — CTAs, links, active states */
+  --brand-600: #0f6fdb;
+  --brand-500: #1a7ce8;
+  --brand-100: #e6f1fc;
+  --brand-50: #f2f8fd;
+
+  /* Text hierarchy */
+  --ink-900: #131a24;
+  --ink-700: #3c4552;
+  --ink-500: #6b7684;
+  --ink-300: #a4adb8;
+
+  /* Borders/dividers */
+  --line-200: #e2e6eb;
+  --line-100: #eef1f4;
+
+  /* Transaction amounts */
+  --positive-600: #157a4a;
+  --positive-50: #e9f7f0;
+  --negative-600: #c22a2a;
+  --negative-50: #fbeaea;
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--brand-50);
+  color: var(--ink-900);
+  -webkit-font-smoothing: antialiased;
 }

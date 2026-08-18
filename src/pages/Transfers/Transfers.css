@@ -1,0 +1,237 @@
+.transfer-card {
+  background: #ffffff;
+  border: 1px solid var(--line-200);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 460px;
+}
+
+.transfer-accounts {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.transfer-account-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.transfer-account-group__label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--ink-500);
+}
+
+.account-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--brand-50);
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-sans);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.account-option:hover {
+  border-color: var(--line-200);
+}
+
+.account-option--selected {
+  background: #ffffff;
+  border-color: var(--brand-600);
+}
+
+.account-option__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--brand-100);
+  color: var(--brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.account-option__info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+}
+
+.account-option__name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.account-option__number {
+  font-size: 11px;
+  color: var(--ink-500);
+}
+
+.account-option__balance {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-700);
+}
+
+.transfer-swap {
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--navy-950);
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 1px var(--line-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: -20px auto;
+  z-index: 1;
+  position: relative;
+}
+
+.transfer-swap:hover {
+  background: var(--brand-600);
+}
+
+.transfer-error {
+  color: var(--negative-600);
+  font-size: 13px;
+  margin: 0 0 8px;
+}
+
+.transfer-amount-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.transfer-amount-wrap {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--line-200);
+  border-radius: 10px;
+  padding: 12px 14px;
+  transition: border-color 0.15s ease;
+}
+
+.transfer-amount-wrap:focus-within {
+  border-color: var(--brand-600);
+}
+
+.transfer-amount-prefix {
+  color: var(--ink-500);
+  font-size: 20px;
+  margin-right: 4px;
+}
+
+.transfer-amount-input {
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  width: 100%;
+  color: var(--ink-900);
+}
+
+.quick-amounts {
+  display: flex;
+  gap: 8px;
+}
+
+.quick-amount {
+  flex: 1;
+  background: var(--brand-50);
+  border: 1.5px solid transparent;
+  color: var(--ink-700);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.quick-amount:hover {
+  border-color: var(--line-200);
+}
+
+.quick-amount--selected {
+  background: #ffffff;
+  border-color: var(--brand-600);
+  color: var(--brand-600);
+}
+
+.transfer-btn {
+  width: 100%;
+  background: var(--brand-600);
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.15s ease;
+}
+
+.transfer-btn:hover {
+  background: var(--brand-500);
+}
+
+.transfer-btn:disabled {
+  background: var(--ink-300);
+  cursor: not-allowed;
+}
+
+.transfer-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding: 24px 0 8px;
+}
+
+.transfer-success__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--positive-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.transfer-success__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink-900);
+  margin: 0;
+}
+
+.transfer-success__text {
+  font-size: 14px;
+  color: var(--ink-500);
+  margin: 8px 0 16px;
+  max-width: 320px;
+}

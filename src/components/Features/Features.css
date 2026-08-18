@@ -1,0 +1,39 @@
+.features {
+  background: var(--brand-50);
+  padding: 64px 24px;
+}
+
+.features__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.features__card {
+  background: #ffffff;
+  border: 1px solid var(--line-200);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.features__title {
+  color: var(--ink-900);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.features__description {
+  color: var(--ink-500);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .features__inner {
+    grid-template-columns: 1fr;
+  }
+}

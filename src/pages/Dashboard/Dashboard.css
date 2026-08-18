@@ -1,0 +1,253 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.page__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.page__eyebrow {
+  color: var(--brand-600);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px;
+}
+
+.page__title {
+  color: var(--ink-900);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.page__action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--navy-950);
+  color: #ffffff;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.page__action:hover {
+  background: var(--navy-900);
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 20px;
+}
+
+.primary-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--brand-600) 130%);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 180px;
+  justify-content: center;
+}
+
+.primary-card__glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+  top: -80px;
+  right: -60px;
+}
+
+.primary-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+}
+
+.primary-card__label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.primary-card__balance {
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  z-index: 1;
+  margin-top: 8px;
+}
+
+.primary-card__number {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  z-index: 1;
+}
+
+.mini-accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mini-account {
+  background: #ffffff;
+  border: 1px solid var(--line-200);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.mini-account__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--brand-100);
+  color: var(--brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mini-account__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.mini-account__name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.mini-account__number {
+  font-size: 12px;
+  color: var(--ink-500);
+}
+
+.mini-account__balance {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+
+.mini-account__balance--negative {
+  color: var(--negative-600);
+}
+
+.activity {
+  background: #ffffff;
+  border: 1px solid var(--line-200);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.activity__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.activity__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink-900);
+  margin: 0;
+}
+
+.activity__link {
+  color: var(--brand-600);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.activity__link:hover {
+  text-decoration: underline;
+}
+
+.activity__row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-100);
+}
+
+.activity__row:first-child {
+  border-top: none;
+}
+
+.activity__row-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--brand-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity__row-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-900);
+}
+
+.activity__row-date {
+  font-size: 13px;
+  color: var(--ink-500);
+}
+
+.activity__row-amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-900);
+  text-align: right;
+}
+
+.activity__row-amount--positive {
+  color: var(--positive-600);
+}
+
+@media (max-width: 900px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .page__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .primary-card__balance {
+    font-size: 28px;
+  }
+}
