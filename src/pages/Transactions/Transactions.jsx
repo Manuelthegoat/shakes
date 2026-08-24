@@ -1,31 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
+import { supabase } from "../../lib/supabaseClient";
 import "./Transactions.css";
 
-const allTransactions = [
-  { id: 1, name: "Whole Foods Market", category: "Groceries", date: "Aug 15, 2026", amount: -84.32 },
-  { id: 2, name: "Payroll Deposit", category: "Income", date: "Aug 14, 2026", amount: 3200.0 },
-  { id: 3, name: "Netflix", category: "Subscriptions", date: "Aug 12, 2026", amount: -15.99 },
-  { id: 4, name: "Shell Gas Station", category: "Transport", date: "Aug 11, 2026", amount: -42.1 },
-  { id: 5, name: "Transfer from Savings", category: "Transfer", date: "Aug 10, 2026", amount: 500.0 },
-  { id: 6, name: "Amazon", category: "Shopping", date: "Aug 9, 2026", amount: -128.47 },
-  { id: 7, name: "Chipotle", category: "Dining", date: "Aug 8, 2026", amount: -13.75 },
-];
-
 function formatCurrency(amount) {
-  const formatted = Math.abs(amount).toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  const formatted = Math.abs(amount).toLocaleString("en-US", { style: "currency", currency: "USD" });
   return amount < 0 ? `-${formatted}` : formatted;
 }
 
 function Transactions() {
+  const { user } = useAuth();
   const [search, setSearch] = useState("");
+  const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const filtered = allTransactions.filter((t) =>
-    t.name.toLowerCase().includes(search.toLowerCase())
-  );
+  useEffect(() => {
+    if (!user) return;
+
+    async function load() {
+      const { data } = await supabase
+        .from("transactions")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("created_at", { ascending: false });
+
+      setTransactions(data || []);
+      setLoading(false);
+    }
+
+    load();
+  }, [user]);
+
+  const filtered = transactions.filter((t) => t.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div className="page">
@@ -44,7 +51,10 @@ function Transactions() {
       </div>
 
       <div className="activity">
-        {filtered.length === 0 && <p className="tx-empty">No transactions match your search.</p>}
+        {loading && <p className="tx-empty">Loading transactions...</p>}
+        {!loading && filtered.length === 0 && (
+          <p className="tx-empty">No transactions match your search.</p>
+        )}
 
         {filtered.map((t) => (
           <div className="activity__row activity__row--tx" key={t.id}>
@@ -59,7 +69,9 @@ function Transactions() {
               <span className="activity__row-name">{t.name}</span>
               <span className="tx-category">{t.category}</span>
             </div>
-            <span className="activity__row-date">{t.date}</span>
+            <span className="activity__row-date">
+              {new Date(t.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+            </span>
             <span
               className={`activity__row-amount ${
                 t.amount > 0 ? "activity__row-amount--positive" : ""

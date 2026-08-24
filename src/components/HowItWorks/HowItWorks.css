@@ -1,0 +1,85 @@
+.how-it-works {
+  background: #ffffff;
+  padding: 80px 24px;
+}
+
+.how-it-works__inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.how-it-works__eyebrow {
+  color: var(--brand-600);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.how-it-works__title {
+  color: var(--ink-900);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-align: center;
+  margin: 0 0 56px;
+}
+
+.how-it-works__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.how-it-works__step {
+  position: relative;
+  text-align: center;
+  padding: 0 12px;
+}
+
+.how-it-works__step-number {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  color: var(--line-200);
+  font-size: 40px;
+  font-weight: 700;
+  z-index: 0;
+}
+
+.how-it-works__step-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--brand-100);
+  color: var(--brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.how-it-works__step-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-900);
+  margin: 0 0 8px;
+}
+
+.how-it-works__step-description {
+  font-size: 14px;
+  color: var(--ink-500);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .how-it-works__steps {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

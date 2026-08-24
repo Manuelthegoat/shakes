@@ -235,7 +235,12 @@
 .activity__row-amount--positive {
   color: var(--positive-600);
 }
-
+.page-loading,
+.page-empty {
+  color: var(--ink-500);
+  font-size: 14px;
+  padding: 24px 0;
+}
 @media (max-width: 900px) {
   .dash-grid {
     grid-template-columns: 1fr;
@@ -250,4 +255,25 @@
   .primary-card__balance {
     font-size: 28px;
   }
+}
+.primary-card__account-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1;
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.primary-card__account-number:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
