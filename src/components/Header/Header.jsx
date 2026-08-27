@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import Button from "../shared/Button/Button";
 import "./Header.css";
 
 function Header() {
+  const { user, loading } = useAuth();
+
   return (
     <header className="header">
       <div className="header__inner">
@@ -15,8 +18,14 @@ function Header() {
         </nav>
 
         <div className="header__actions">
-          <Button as={Link} to="/login" variant="ghost">Sign in</Button>
-          <Button as={Link} to="/signup" variant="primary">Open an account</Button>
+          {loading ? null : user ? (
+            <Button as={Link} to="/dashboard" variant="primary">Dashboard</Button>
+          ) : (
+            <>
+              <Button as={Link} to="/login" variant="ghost">Sign in</Button>
+              <Button as={Link} to="/signup" variant="primary">Open an account</Button>
+            </>
+          )}
         </div>
       </div>
     </header>

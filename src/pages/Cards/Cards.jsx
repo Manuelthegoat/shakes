@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Lock,
   Plus,
@@ -202,6 +203,13 @@ function Cards() {
   const [showForm, setShowForm] = useState(false);
   const [cardType, setCardType] = useState("debit");
   const [cardName, setCardName] = useState("");
+  const [dob, setDob] = useState("");
+  const [ssn, setSsn] = useState("");
+  const [addressLine1, setAddressLine1] = useState("");
+  const [addressCity, setAddressCity] = useState("");
+  const [addressState, setAddressState] = useState("");
+  const [addressZip, setAddressZip] = useState("");
+  const [income, setIncome] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -223,13 +231,30 @@ function Cards() {
   const handleApply = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    const ssnDigits = ssn.replace(/\D/g, "");
+
     await supabase.from("card_applications").insert({
       user_id: user.id,
       card_type: cardType,
       requested_name:
         cardName || (cardType === "debit" ? "Freedom Debit" : "Freedom Credit"),
+      date_of_birth: dob,
+      ssn_last4: ssnDigits.slice(-4),
+      address_line1: addressLine1,
+      address_city: addressCity,
+      address_state: addressState,
+      address_zip: addressZip,
+      annual_income: income ? Number(income) : null,
     });
+
     setCardName("");
+    setDob("");
+    setSsn("");
+    setAddressLine1("");
+    setAddressCity("");
+    setAddressState("");
+    setAddressZip("");
+    setIncome("");
     setShowForm(false);
     setSubmitting(false);
     load();
@@ -244,10 +269,10 @@ function Cards() {
           <p className="page__eyebrow">Your cards</p>
           <h1 className="page__title">Cards</h1>
         </div>
-        <button className="page__action" onClick={() => setShowForm((s) => !s)}>
-          {showForm ? <X size={16} /> : <Plus size={16} strokeWidth={2.5} />}
-          {showForm ? "Cancel" : "Apply for a card"}
-        </button>
+        <Link to="/dashboard/cards/apply" className="page__action">
+          <Plus size={16} strokeWidth={2.5} />
+          Apply for a card
+        </Link>
       </div>
 
       {showForm && (
@@ -280,6 +305,84 @@ function Cards() {
             placeholder="Card nickname (optional)"
             value={cardName}
             onChange={(e) => setCardName(e.target.value)}
+          />
+
+          <div className="apply-card-form__divider">Identity verification</div>
+
+          <div className="apply-card-form__grid">
+            <div>
+              <label className="apply-card-form__label">Date of birth</label>
+              <input
+                type="date"
+                className="apply-card-form__input"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label className="apply-card-form__label">
+                Social Security Number
+              </label>
+              <input
+                type="text"
+                className="apply-card-form__input"
+                placeholder="123-45-6789"
+                value={ssn}
+                onChange={(e) => setSsn(e.target.value)}
+                maxLength={11}
+                required
+              />
+            </div>
+          </div>
+
+          <p className="apply-card-form__note apply-card-form__note--warning">
+            Demo project — please use a fake SSN, not a real one. Only the last
+            4 digits are ever stored.
+          </p>
+
+          <div className="apply-card-form__divider">Address</div>
+
+          <input
+            className="apply-card-form__input"
+            placeholder="Street address"
+            value={addressLine1}
+            onChange={(e) => setAddressLine1(e.target.value)}
+            required
+          />
+
+          <div className="apply-card-form__grid apply-card-form__grid--three">
+            <input
+              className="apply-card-form__input"
+              placeholder="City"
+              value={addressCity}
+              onChange={(e) => setAddressCity(e.target.value)}
+              required
+            />
+            <input
+              className="apply-card-form__input"
+              placeholder="State"
+              value={addressState}
+              onChange={(e) => setAddressState(e.target.value)}
+              required
+            />
+            <input
+              className="apply-card-form__input"
+              placeholder="ZIP"
+              value={addressZip}
+              onChange={(e) => setAddressZip(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="apply-card-form__divider">Income</div>
+
+          <input
+            type="number"
+            className="apply-card-form__input"
+            placeholder="Annual income (optional)"
+            value={income}
+            onChange={(e) => setIncome(e.target.value)}
           />
 
           <button

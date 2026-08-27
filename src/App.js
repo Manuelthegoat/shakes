@@ -22,6 +22,8 @@ import Footer from "./components/Footer/Footer";
 import Personal from "./pages/Personal/Personal";
 import Business from "./pages/Business/Business";
 import Support from "./pages/Support/Support";
+import ApplyCard from "./pages/ApplyCard/ApplyCard";
+import GuestRoute from "./components/GuestRoute/GuestRoute";
 import "./App.css";
 
 function Landing() {
@@ -43,13 +45,33 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route
+          path="/login"
+          element={
+            <GuestRoute>
+              <Login />
+            </GuestRoute>
+          }
+        />{" "}
+        <Route
+          path="/signup"
+          element={
+            <GuestRoute>
+              <Signup />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <GuestRoute>
+              <ForgotPassword />
+            </GuestRoute>
+          }
+        />{" "}
         <Route path="/personal" element={<Personal />} />
         <Route path="/business" element={<Business />} />
         <Route path="/support" element={<Support />} />
-
         <Route
           path="/dashboard"
           element={
@@ -63,6 +85,7 @@ function App() {
           <Route path="cards" element={<Cards />} />
           <Route path="transfers" element={<Transfers />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="cards/apply" element={<ApplyCard />} />
           <Route
             path="admin"
             element={

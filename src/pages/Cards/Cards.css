@@ -318,3 +318,48 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+.apply-card-form {
+  max-width: 480px;
+}
+
+.apply-card-form__divider {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--ink-500);
+  border-top: 1px solid var(--line-100);
+  padding-top: 14px;
+  margin-top: 2px;
+}
+
+.apply-card-form__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-700);
+  margin-bottom: 5px;
+}
+
+.apply-card-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.apply-card-form__grid--three {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.apply-card-form__note--warning {
+  background: var(--brand-50);
+  color: var(--brand-600);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin: -4px 0 0;
+}
+a.page__action {
+  text-decoration: none;
+  display: inline-flex;
+}
