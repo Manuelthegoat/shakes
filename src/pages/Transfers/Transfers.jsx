@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, CheckCircle2, Wallet, PiggyBank, Search, Loader2 } from "lucide-react";
+import { CheckCircle2, Wallet, PiggyBank, Search, Loader2 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
 import "./Transfers.css";

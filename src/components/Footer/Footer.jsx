@@ -35,7 +35,7 @@ function Footer() {
               <div className="footer__column" key={col.title}>
                 <span className="footer__column-title">{col.title}</span>
                 {col.links.map((link) => (
-                  <a href="#" className="footer__link" key={link}>{link}</a>
+                  <a href="/" className="footer__link" key={link}>{link}</a>
                 ))}
               </div>
             ))}
