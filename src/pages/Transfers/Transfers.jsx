@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
 import "./Transfers.css";
 import PinModal from "../../components/PinModal/PinModal";
+import Loader from "../../components/shared/Loader/Loader";
 
 const iconByType = { checking: Wallet, savings: PiggyBank };
 const quickAmounts = [25, 50, 100, 250];
@@ -149,7 +150,7 @@ const executeTransfer = async () => {
       .then(({ data }) => setMyAccounts(data || []));
   };
 
-  if (!from) return <div className="page-loading">Loading your accounts...</div>;
+  if (!from) return <Loader label="Loading your accounts" />;
 
   return (
     <div className="page transfer-page">
@@ -274,7 +275,7 @@ const executeTransfer = async () => {
               className="transfer-btn"
               disabled={!recipient || !amount || submitting}
             >
-              {submitting ? "Sending..." : "Send transfer"}
+              {submitting ? <Loader label="Sending" inline /> : "Send transfer"}
             </button>
           </form>
         )}

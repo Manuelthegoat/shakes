@@ -1,11 +1,12 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import Loader from "../shared/Loader/Loader";
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return <div className="route-loading">Loading...</div>;
+    return <Loader label="Checking your session" fullScreen />;
   }
 
   if (!user) {

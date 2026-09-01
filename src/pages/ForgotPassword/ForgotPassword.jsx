@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../lib/supabaseClient";
+import Loader from "../../components/shared/Loader/Loader";
 import "../Login/Login.css";
 import logo from "../../logo.svg";
 
@@ -74,7 +75,7 @@ function ForgotPassword() {
             </div>
 
             <button type="submit" className="auth-submit-btn" disabled={loading}>
-              {loading ? "Sending..." : "Send reset link"}
+            {loading ? <Loader label="Sending" inline /> : "Send reset link"}
             </button>
 
             <p className="auth-form__footer">

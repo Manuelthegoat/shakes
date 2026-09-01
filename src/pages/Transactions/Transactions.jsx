@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
+import Loader from "../../components/shared/Loader/Loader";
 import "./Transactions.css";
 
 function formatCurrency(amount) {
@@ -51,7 +52,7 @@ function Transactions() {
       </div>
 
       <div className="activity">
-        {loading && <p className="tx-empty">Loading transactions...</p>}
+        {loading && <Loader label="Loading transactions" />}
         {!loading && filtered.length === 0 && (
           <p className="tx-empty">No transactions match your search.</p>
         )}

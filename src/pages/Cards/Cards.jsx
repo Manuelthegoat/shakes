@@ -15,6 +15,7 @@ import {
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
 import PinModal from "../../components/PinModal/PinModal";
+import Loader from "../../components/shared/Loader/Loader";
 import "./Cards.css";
 
 const gradients = {
@@ -279,7 +280,7 @@ function Cards() {
     load();
   };
 
-  if (loading) return <div className="page-loading">Loading your cards...</div>;
+  if (loading) return <Loader label="Loading your cards" />;
 
   return (
     <div className="page">
@@ -408,7 +409,7 @@ function Cards() {
             className="apply-card-form__submit"
             disabled={submitting}
           >
-            {submitting ? "Submitting..." : "Submit application"}
+            {submitting ? <Loader label="Submitting" inline /> : "Submit application"}
           </button>
           <p className="apply-card-form__note">
             Applications are reviewed before a card is issued.

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import Loader from "../../components/shared/Loader/Loader";
 import "./Login.css";
 import logo from "../../logo.svg";
 
@@ -107,7 +108,7 @@ function Login() {
           </label>
 
           <button type="submit" className="auth-submit-btn" disabled={loading}>
-            {loading ? "Signing in..." : "Sign in"}
+            {loading ? <Loader label="Signing in" inline /> : "Sign in"}
           </button>
 
           <p className="auth-form__footer">

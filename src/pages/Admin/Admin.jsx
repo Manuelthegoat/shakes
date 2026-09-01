@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Check, X, ShieldCheck, ChevronDown, ChevronUp } from "lucide-react";
 import { supabase } from "../../lib/supabaseClient";
+import Loader from "../../components/shared/Loader/Loader";
 import "./Admin.css";
 
 function formatSsn(ssn) {
@@ -65,7 +66,7 @@ function Admin() {
       </div>
 
       <div className="activity">
-        {loading && <p className="page-empty">Loading applications...</p>}
+        {loading && <Loader label="Loading applications" />}
         {!loading && filtered.length === 0 && <p className="page-empty">No applications here.</p>}
 
         {filtered.map((app) => {

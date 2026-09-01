@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
+import Loader from "../../components/shared/Loader/Loader";
 
 import "./Settings.css";
 
@@ -69,7 +70,7 @@ function ProfileTab() {
     setTimeout(() => setSaved(false), 2000);
   };
 
-  if (loading) return <p className="settings-loading">Loading...</p>;
+  if (loading) return <Loader label="Loading profile" />;
 
   return (
     <form onSubmit={handleSave}>
@@ -115,7 +116,7 @@ function ProfileTab() {
       </div>
 
       <button type="submit" className="settings-save-btn" disabled={saving}>
-        {saving ? "Saving..." : saved ? "Saved ✓" : "Save changes"}
+        {saving ? <Loader label="Saving" inline /> : saved ? "Saved ✓" : "Save changes"}
       </button>
     </form>
   );
@@ -237,7 +238,7 @@ function SecurityTab() {
     setTimeout(() => setPinSaved(false), 2000);
   };
 
-  if (loading) return <p className="settings-loading">Loading...</p>;
+  if (loading) return <Loader label="Loading security settings" />;
 
   return (
     <form onSubmit={handleSave}>
@@ -301,7 +302,7 @@ function SecurityTab() {
 
       <button type="submit" className="settings-save-btn" disabled={saving}>
         {saving
-          ? "Updating..."
+          ? <Loader label="Updating" inline />
           : saved
             ? "Saved ✓"
             : "Update security settings"}
@@ -355,7 +356,7 @@ function SecurityTab() {
         style={{ marginBottom: 24 }}
       >
         {pinSaving
-          ? "Saving..."
+          ? <Loader label="Saving" inline />
           : pinSaved
             ? "PIN saved ✓"
             : hasPin
@@ -413,7 +414,7 @@ function NotificationsTab() {
     setTimeout(() => setSaved(false), 2000);
   };
 
-  if (loading) return <p className="settings-loading">Loading...</p>;
+  if (loading) return <Loader label="Loading notifications" />;
 
   const rows = [
     {
@@ -461,7 +462,7 @@ function NotificationsTab() {
       ))}
 
       <button type="submit" className="settings-save-btn" disabled={saving}>
-        {saving ? "Saving..." : saved ? "Saved ✓" : "Save preferences"}
+        {saving ? <Loader label="Saving" inline /> : saved ? "Saved ✓" : "Save preferences"}
       </button>
     </form>
   );

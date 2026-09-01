@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CreditCard, Wallet, User, Home, DollarSign, ShieldCheck } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
+import Loader from "../../components/shared/Loader/Loader";
 import "./ApplyCard.css";
 
 function ApplyCard() {
@@ -208,7 +209,7 @@ function ApplyCard() {
         {error && <p className="apply-error">{error}</p>}
 
         <button type="submit" className="apply-submit-btn" disabled={submitting}>
-          {submitting ? "Submitting application..." : "Submit application"}
+          {submitting ? <Loader label="Submitting application" inline /> : "Submit application"}
         </button>
         <p className="apply-footnote">Applications are typically reviewed within 1-2 business days.</p>
       </form>

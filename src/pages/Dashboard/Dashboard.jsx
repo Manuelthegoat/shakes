@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
+import Loader from "../../components/shared/Loader/Loader";
 import "./Dashboard.css";
 
 const iconByType = { checking: Wallet, savings: PiggyBank, credit: CreditCard };
@@ -74,7 +75,7 @@ function Dashboard() {
   }, [user]);
 
   if (loading)
-    return <div className="page-loading">Loading your accounts...</div>;
+    return <Loader label="Loading your accounts" />;
 
   const primary = accounts.find((a) => a.type === "checking") || accounts[0];
   const others = accounts.filter((a) => a.id !== primary?.id);

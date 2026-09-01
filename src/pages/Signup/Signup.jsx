@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff, Check } from "lucide-react";
 import { supabase } from "../../lib/supabaseClient";
+import Loader from "../../components/shared/Loader/Loader";
 import "./Signup.css";
 import logo from "../../logo.svg";
 
@@ -190,7 +191,7 @@ function Signup() {
             <div className="auth-step-actions">
               <button type="button" className="auth-back-btn" onClick={goBack}>Back</button>
               <button type="submit" className="auth-submit-btn" disabled={loading}>
-                {loading ? "Creating account..." : "Create account"}
+                {loading ? <Loader label="Creating account" inline /> : "Create account"}
               </button>
             </div>
           </form>
