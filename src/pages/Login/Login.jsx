@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import "./Login.css";
+import logo from "../../logo.svg";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -33,7 +34,7 @@ function Login() {
       <div className="auth-panel">
         <div className="auth-panel__glow" />
         <div className="auth-panel__content">
-          <span className="auth-panel__logo">Horizon</span>
+          <img className="auth-panel__logo" src={logo} alt="Chase" />
           <h1 className="auth-panel__headline">
             Your money,
             <br />

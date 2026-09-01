@@ -16,26 +16,11 @@
 .header__logo {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
+  line-height: 0;
   text-decoration: none;
 }
 
-.header__logo::before {
-  content: "✦";
-  width: 27px;
-  height: 27px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  background: linear-gradient(135deg, var(--brand-500), #55a9ff);
-  border-radius: 8px;
-  font-size: 15px;
-}
+.header__logo img { width: 126px; height: 24px; filter: brightness(0) invert(1); }
 
 .header__nav {
   display: flex;

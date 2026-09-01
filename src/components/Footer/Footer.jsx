@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import logo from "../../logo.svg";
 
 const columns = [
   {
@@ -26,8 +27,8 @@ function Footer() {
       <div className="footer__inner">
         <div className="footer__top">
           <div className="footer__brand">
-            <Link to="/" className="footer__logo">Horizon</Link>
-            <p className="footer__tagline">Banking that works as hard as you do.</p>
+            <Link to="/" className="footer__logo"><img src={logo} alt="Chase" /></Link>
+            <p className="footer__tagline">Chase banking that works as hard as you do.</p>
           </div>
 
           <div className="footer__columns">
@@ -43,7 +44,7 @@ function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <span>© {new Date().getFullYear()} Horizon. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Chase. All rights reserved.</span>
           <span>Member FDIC-style deposit protection</span>
         </div>
       </div>

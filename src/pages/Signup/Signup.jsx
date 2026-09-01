@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff, Check } from "lucide-react";
 import { supabase } from "../../lib/supabaseClient";
 import "./Signup.css";
+import logo from "../../logo.svg";
 
 const steps = ["Account", "About you", "Done"];
 
@@ -66,7 +67,7 @@ function Signup() {
       <div className="auth-panel">
         <div className="auth-panel__glow" />
         <div className="auth-panel__content">
-          <span className="auth-panel__logo">Horizon</span>
+          <img className="auth-panel__logo" src={logo} alt="Chase" />
           <h1 className="auth-panel__headline">
             Open an account
             <br />

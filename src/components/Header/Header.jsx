@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Button from "../shared/Button/Button";
+import logo from "../../logo.svg";
 import "./Header.css";
 
 function Header() {
@@ -9,7 +10,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header__inner">
-        <Link to="/" className="header__logo">Horizon</Link>
+        <Link to="/" className="header__logo"><img src={logo} alt="Chase" /></Link>
 
         <nav className="header__nav">
           <Link to="/personal" className="header__link">Personal</Link>

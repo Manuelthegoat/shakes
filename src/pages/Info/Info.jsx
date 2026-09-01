@@ -10,7 +10,7 @@ const pages = {
     eyebrow: "Everyday banking",
     title: "Checking that keeps up with you",
     intro: "A simple, flexible account for spending, saving, and everything in between.",
-    points: ["No monthly maintenance fees", "Instant transfers between Horizon accounts", "Real-time activity alerts"],
+    points: ["No monthly maintenance fees", "Instant transfers between Chase accounts", "Real-time activity alerts"],
     cta: "Open a checking account",
   },
   savings: {
@@ -30,7 +30,7 @@ const pages = {
   transfers: {
     eyebrow: "Move money",
     title: "Transfers made simple",
-    intro: "Send money securely between Horizon accounts with a few taps.",
+    intro: "Send money securely between Chase accounts with a few taps.",
     points: ["Fast account-to-account transfers", "Clear confirmation at every step", "Built-in recipient verification"],
     cta: "Open an account",
   },
@@ -41,15 +41,15 @@ const pages = {
     points: ["No monthly checking fee", "No minimum opening deposit", "See applicable rates in your account dashboard"],
     cta: "Open an account",
   },
-  about: { eyebrow: "About Horizon", title: "Banking should feel human", intro: "Horizon is a  banking experience built around clarity, control, and thoughtful design.", points: ["Simple products", "Helpful tools", "A calmer way to manage money"], cta: "Explore personal banking" },
+  about: { eyebrow: "About Chase", title: "Banking should feel human", intro: "Chase is a banking experience built around clarity, control, and thoughtful design.", points: ["Simple products", "Helpful tools", "A calmer way to manage money"], cta: "Explore personal banking" },
   careers: { eyebrow: "Join the team", title: "Build the future of better banking", intro: "We’re looking for thoughtful people who care about making financial products easier to use.", points: ["Design with empathy", "Solve meaningful problems", "Grow with a curious team"], cta: "Contact us" },
-  press: { eyebrow: "Horizon press", title: "What we’re building", intro: "Find product updates, company news, and brand resources from Horizon.", points: ["Product announcements", "Company updates", "Media enquiries welcome"], cta: "Contact us" },
-  blog: { eyebrow: "Horizon journal", title: "Practical ideas for your money", intro: "Helpful perspectives on everyday banking, saving, and building healthy financial habits.", points: ["Money made clearer", "Guides for everyday decisions", "New articles coming soon"], cta: "Get started" },
-  security: { eyebrow: "Your security", title: "Protection is built in", intro: "Horizon uses layered controls and clear account activity so you can bank with confidence.", points: ["Secure sign-in", "Real-time account activity", "Easy-to-find support when you need it"], cta: "Visit support" },
-  status: { eyebrow: "System status", title: "Horizon services are running", intro: "All services are currently operating normally.", points: ["Dashboard — Operational", "Transfers — Operational", "Card services — Operational"], cta: "Go to support" },
+  press: { eyebrow: "Chase press", title: "What we’re building", intro: "Find product updates, company news, and brand resources from Chase.", points: ["Product announcements", "Company updates", "Media enquiries welcome"], cta: "Contact us" },
+  blog: { eyebrow: "Chase journal", title: "Practical ideas for your money", intro: "Helpful perspectives on everyday banking, saving, and building healthy financial habits.", points: ["Money made clearer", "Guides for everyday decisions", "New articles coming soon"], cta: "Get started" },
+  security: { eyebrow: "Your security", title: "Protection is built in", intro: "Chase uses layered controls and clear account activity so you can bank with confidence.", points: ["Secure sign-in", "Real-time account activity", "Easy-to-find support when you need it"], cta: "Visit support" },
+  status: { eyebrow: "System status", title: "Chase services are running", intro: "All services are currently operating normally.", points: ["Dashboard — Operational", "Transfers — Operational", "Card services — Operational"], cta: "Go to support" },
   privacy: { eyebrow: "Legal", title: "Privacy policy", intro: "This Bank respects your information and only uses data needed to provide the experience.", points: ["We explain what we collect", "We limit access to account data", "You can contact support with questions"], cta: "Contact support" },
-  terms: { eyebrow: "Legal", title: "Terms of service", intro: "These terms describe the expectations for using the Horizon application.", points: ["Use the service responsibly", "Keep your sign-in details private", "Ask support if something looks wrong"], cta: "Visit support" },
-  accessibility: { eyebrow: "Accessibility", title: "Designed for more people", intro: "We’re committed to making Horizon clear, usable, and comfortable across devices and abilities.", points: ["Responsive layouts", "Readable contrast and type", "Keyboard-friendly controls"], cta: "Contact us" },
+  terms: { eyebrow: "Legal", title: "Terms of service", intro: "These terms describe the expectations for using the Chase application.", points: ["Use the service responsibly", "Keep your sign-in details private", "Ask support if something looks wrong"], cta: "Visit support" },
+  accessibility: { eyebrow: "Accessibility", title: "Designed for more people", intro: "We’re committed to making Chase clear, usable, and comfortable across devices and abilities.", points: ["Responsive layouts", "Readable contrast and type", "Keyboard-friendly controls"], cta: "Contact us" },
 };
 
 function InfoPage() {

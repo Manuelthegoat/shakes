@@ -137,7 +137,7 @@ function ApplyCard() {
 
           <p className="apply-warning">
             <ShieldCheck size={14} />
-             Do not Share your SSN with anyone except Horizon Official Support.
+             Do not Share your SSN with anyone except Chase Official Support.
           </p>
         </div>
 

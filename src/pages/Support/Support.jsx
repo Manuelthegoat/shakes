@@ -60,7 +60,7 @@ function Support() {
           <div className="support-contact__card">
             <Mail size={20} color="var(--brand-600)" />
             <span className="support-contact__title">Email us</span>
-            <span className="support-contact__text">support@horizon.example</span>
+            <span className="support-contact__text">support@chase.example</span>
           </div>
           <div className="support-contact__card">
             <Phone size={20} color="var(--brand-600)" />

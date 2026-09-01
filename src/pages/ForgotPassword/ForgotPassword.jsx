@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../../lib/supabaseClient";
 import "../Login/Login.css";
+import logo from "../../logo.svg";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -31,7 +32,7 @@ function ForgotPassword() {
       <div className="auth-panel">
         <div className="auth-panel__glow" />
         <div className="auth-panel__content">
-          <span className="auth-panel__logo">Horizon</span>
+          <img className="auth-panel__logo" src={logo} alt="Chase" />
           <h1 className="auth-panel__headline">
             Forgot your
             <br />

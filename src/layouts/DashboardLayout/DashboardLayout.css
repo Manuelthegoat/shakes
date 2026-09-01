@@ -43,6 +43,8 @@
   letter-spacing: -0.2px;
 }
 
+.sidebar__logo img { width: 126px; height: 24px; filter: brightness(0) invert(1); }
+
 .sidebar__logo-mark {
   width: 30px;
   height: 30px;
@@ -190,6 +192,8 @@
     z-index: 20;
   }
 
+  .mobile-topbar__divider { width: 1px; height: 20px; background: rgba(255, 255, 255, .2); margin-left: 2px; }
+
   .mobile-topbar__toggle {
     background: transparent;
     border: none;
@@ -199,11 +203,18 @@
   }
 
   .mobile-topbar__logo {
+    display: inline-flex;
+    align-items: center;
     color: #ffffff;
     font-weight: 700;
     font-size: 16px;
     text-decoration: none;
   }
+
+  .mobile-topbar__logo img { width: 104px; height: auto; filter: brightness(0) invert(1); }
+
+  .mobile-topbar__context { color: rgba(255, 255, 255, .65); font-size: 12px; font-weight: 600; flex: 1; }
+  .mobile-topbar__user { width: 29px; height: 29px; display: flex; align-items: center; justify-content: center; color: #fff; background: var(--brand-600); border: 2px solid rgba(255,255,255,.2); border-radius: 50%; font-size: 11px; font-weight: 700; }
 
   .app-shell {
     flex-direction: column;

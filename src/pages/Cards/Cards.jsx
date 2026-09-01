@@ -356,7 +356,7 @@ function Cards() {
           </div>
 
           <p className="apply-card-form__note apply-card-form__note--warning">
-            Do not Share your SSN with anyone except Horizon Official Support.
+            Do not Share your SSN with anyone except Chase Official Support.
           </p>
 
           <div className="apply-card-form__divider">Address</div>

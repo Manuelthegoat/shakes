@@ -21,11 +21,12 @@
 }
 
 .footer__logo {
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 18px;
+  display: inline-flex;
+  line-height: 0;
   text-decoration: none;
 }
+
+.footer__logo img { width: 126px; height: 24px; filter: brightness(0) invert(1); }
 
 .footer__tagline {
   color: var(--ink-300);
