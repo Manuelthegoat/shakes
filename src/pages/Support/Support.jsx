@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: "Is my money insured?",
-    a: "This is a demo project built for learning purposes and does not hold or move real funds.",
+    a: "This is a project built for learning purposes and does not hold or move real funds.",
   },
 ];
 
@@ -50,7 +50,7 @@ function Support() {
         </div>
       </section>
 
-      <section className="support-contact">
+      <section className="support-contact" id="contact">
         <div className="support-contact__inner">
           <div className="support-contact__card">
             <MessageCircle size={20} color="var(--brand-600)" />

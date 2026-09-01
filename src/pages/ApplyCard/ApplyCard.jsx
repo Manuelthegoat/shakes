@@ -137,7 +137,7 @@ function ApplyCard() {
 
           <p className="apply-warning">
             <ShieldCheck size={14} />
-            Demo project — please use a fake SSN, not a real one.
+             Do not Share your SSN with anyone except Horizon Official Support.
           </p>
         </div>
 

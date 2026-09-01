@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
+import PinModal from "../../components/PinModal/PinModal";
 import "./Cards.css";
 
 const gradients = {
@@ -39,6 +40,7 @@ function CardDetailModal({ card, onClose, onActionComplete }) {
   const [actionAmount, setActionAmount] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
   const [actionError, setActionError] = useState("");
+  const [pendingAction, setPendingAction] = useState(null);
 
   useEffect(() => {
     if (card.account_id) {
@@ -57,8 +59,14 @@ function CardDetailModal({ card, onClose, onActionComplete }) {
     setTimeout(() => setCopied(false), 1500);
   };
 
-  const runAction = async (action) => {
+  const runAction = (action) => {
     if (!actionAmount) return;
+    setPendingAction(action);
+  };
+
+  const confirmAction = async () => {
+    const action = pendingAction;
+    setPendingAction(null);
     setActionLoading(true);
     setActionError("");
     const { error } = await supabase.rpc("credit_card_action", {
@@ -190,8 +198,19 @@ function CardDetailModal({ card, onClose, onActionComplete }) {
         )}
 
         <p className="card-modal__note">
-          Never share your full card number or CVV with anyone.
+          Only share your full card number or CVV with Support.
         </p>
+        {pendingAction && (
+          <PinModal
+            title={
+              pendingAction === "charge"
+                ? "Confirm purchase"
+                : "Confirm payment"
+            }
+            onSuccess={confirmAction}
+            onCancel={() => setPendingAction(null)}
+          />
+        )}
       </div>
     </div>
   );
@@ -337,8 +356,7 @@ function Cards() {
           </div>
 
           <p className="apply-card-form__note apply-card-form__note--warning">
-            Demo project — please use a fake SSN, not a real one. Only the last
-            4 digits are ever stored.
+            Do not Share your SSN with anyone except Horizon Official Support.
           </p>
 
           <div className="apply-card-form__divider">Address</div>

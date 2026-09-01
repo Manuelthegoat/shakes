@@ -14,11 +14,27 @@
 }
 
 .header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   color: #ffffff;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.3px;
   text-decoration: none;
+}
+
+.header__logo::before {
+  content: "✦";
+  width: 27px;
+  height: 27px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-500), #55a9ff);
+  border-radius: 8px;
+  font-size: 15px;
 }
 
 .header__nav {
@@ -64,4 +80,30 @@
 
 .header__cta:hover {
   background: var(--brand-500);
+}
+
+@media (max-width: 700px) {
+  .header__inner {
+    height: auto;
+    min-height: 60px;
+    padding: 12px 18px;
+    gap: 14px;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .header__actions {
+    gap: 10px;
+  }
+
+  .header__signin,
+  .header__cta {
+    font-size: 12px;
+  }
+
+  .header__cta {
+    padding: 9px 12px;
+  }
 }

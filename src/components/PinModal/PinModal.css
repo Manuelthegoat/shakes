@@ -1,0 +1,103 @@
+.pin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 31, 61, 0.68);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 20px;
+}
+
+.pin-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 34px 28px 28px;
+  max-width: 340px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 24px 70px rgba(5, 20, 40, .3);
+}
+
+.pin-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--brand-50);
+  border: none;
+  color: var(--ink-700);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pin-modal__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-100), #d7eaff);
+  color: var(--brand-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.pin-modal__title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-900);
+  margin: 0 0 4px;
+}
+
+.pin-modal__subtitle {
+  font-size: 13px;
+  color: var(--ink-500);
+  margin: 0 0 24px;
+}
+
+.pin-modal__digits {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.pin-modal__digit {
+  width: 46px;
+  height: 52px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  border: 1.5px solid var(--line-200);
+  border-radius: 12px;
+  outline: none;
+  font-family: var(--font-sans);
+  color: var(--ink-900);
+  background: var(--brand-50);
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.pin-modal__digit:focus {
+  border-color: var(--brand-600);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(15, 111, 219, .12);
+}
+
+.pin-modal__error {
+  color: var(--negative-600);
+  font-size: 13px;
+  margin: 0;
+}
+
+.pin-modal__checking {
+  color: var(--ink-500);
+  font-size: 13px;
+  margin: 0;
+}

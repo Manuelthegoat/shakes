@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
-import { User, Lock, Bell, Mail, Phone as PhoneIcon } from "lucide-react";
+import {
+  User,
+  Lock,
+  Bell,
+  Mail,
+  Phone as PhoneIcon,
+  KeyRound,
+} from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
+
 import "./Settings.css";
 
 const tabs = [
@@ -12,7 +20,13 @@ const tabs = [
 
 function initials(name) {
   if (!name) return "?";
-  return name.split(" ").filter(Boolean).map((n) => n[0]).join("").slice(0, 2).toUpperCase();
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 }
 
 function ProfileTab() {
@@ -64,16 +78,26 @@ function ProfileTab() {
 
       <div className="settings-field">
         <label className="settings-label">Full name</label>
-        <input className="settings-input" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+        <input
+          className="settings-input"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+        />
       </div>
 
       <div className="settings-field">
         <label className="settings-label">Email</label>
         <div className="settings-input-icon">
           <Mail size={15} />
-          <input className="settings-input settings-input--plain" value={user?.email || ""} disabled />
+          <input
+            className="settings-input settings-input--plain"
+            value={user?.email || ""}
+            disabled
+          />
         </div>
-        <span className="settings-hint">Contact support to change your email.</span>
+        <span className="settings-hint">
+          Contact support to change your email.
+        </span>
       </div>
 
       <div className="settings-field">
@@ -107,6 +131,12 @@ function SecurityTab() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
+  const [hasPin, setHasPin] = useState(false);
+  const [newPin, setNewPin] = useState("");
+  const [confirmPin, setConfirmPin] = useState("");
+  const [pinSaving, setPinSaving] = useState(false);
+  const [pinSaved, setPinSaved] = useState(false);
+  const [pinError, setPinError] = useState("");
 
   useEffect(() => {
     if (!user) return;
@@ -119,6 +149,7 @@ function SecurityTab() {
         setTwoFactor(data?.two_factor_enabled || false);
         setLoading(false);
       });
+    supabase.rpc("has_transaction_pin").then(({ data }) => setHasPin(!!data));
   }, [user]);
 
   const handleSave = async (e) => {
@@ -147,7 +178,9 @@ function SecurityTab() {
         return;
       }
 
-      const { error: pwError } = await supabase.auth.updateUser({ password: newPassword });
+      const { error: pwError } = await supabase.auth.updateUser({
+        password: newPassword,
+      });
       if (pwError) {
         setSaving(false);
         setError(pwError.message);
@@ -172,6 +205,36 @@ function SecurityTab() {
     setConfirmPassword("");
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
+  };
+  const handleSetPin = async (e) => {
+    e.preventDefault();
+    setPinError("");
+
+    if (!/^\d{4}$/.test(newPin)) {
+      setPinError("PIN must be exactly 4 digits.");
+      return;
+    }
+    if (newPin !== confirmPin) {
+      setPinError("PINs don't match.");
+      return;
+    }
+
+    setPinSaving(true);
+    const { error } = await supabase.rpc("set_transaction_pin", {
+      p_pin: newPin,
+    });
+    setPinSaving(false);
+
+    if (error) {
+      setPinError(error.message);
+      return;
+    }
+
+    setHasPin(true);
+    setNewPin("");
+    setConfirmPin("");
+    setPinSaved(true);
+    setTimeout(() => setPinSaved(false), 2000);
   };
 
   if (loading) return <p className="settings-loading">Loading...</p>;
@@ -219,17 +282,85 @@ function SecurityTab() {
       <h2 className="settings-section-title">Two-factor authentication</h2>
       <label className="settings-switch-row">
         <span className="settings-switch-row__text">
-          <span className="settings-switch-row__label">Require a second step at sign in</span>
-          <span className="settings-switch-row__hint">Adds an extra layer of protection to your account</span>
+          <span className="settings-switch-row__label">
+            Require a second step at sign in
+          </span>
+          <span className="settings-switch-row__hint">
+            Adds an extra layer of protection to your account
+          </span>
         </span>
         <span className="settings-switch">
-          <input type="checkbox" checked={twoFactor} onChange={(e) => setTwoFactor(e.target.checked)} />
+          <input
+            type="checkbox"
+            checked={twoFactor}
+            onChange={(e) => setTwoFactor(e.target.checked)}
+          />
           <span className="settings-switch__track" />
         </span>
       </label>
 
       <button type="submit" className="settings-save-btn" disabled={saving}>
-        {saving ? "Updating..." : saved ? "Saved ✓" : "Update security settings"}
+        {saving
+          ? "Updating..."
+          : saved
+            ? "Saved ✓"
+            : "Update security settings"}
+      </button>
+      <div className="settings-divider" />
+
+      <h2 className="settings-section-title">
+        <KeyRound size={15} style={{ verticalAlign: "-2px", marginRight: 6 }} />
+        Transaction PIN
+      </h2>
+      <p className="settings-hint" style={{ marginTop: -12, marginBottom: 16 }}>
+        {hasPin
+          ? "Required to confirm transfers and card charges."
+          : "Set a 4-digit PIN to secure transfers and card payments."}
+      </p>
+
+      {pinError && <p className="settings-error">{pinError}</p>}
+
+      <div className="settings-field-row">
+        <div className="settings-field">
+          <label className="settings-label">
+            {hasPin ? "New PIN" : "Set PIN"}
+          </label>
+          <input
+            className="settings-input"
+            type="password"
+            inputMode="numeric"
+            maxLength={4}
+            value={newPin}
+            onChange={(e) => setNewPin(e.target.value.replace(/\D/g, ""))}
+          />
+        </div>
+        <div className="settings-field">
+          <label className="settings-label">Confirm PIN</label>
+          <input
+            className="settings-input"
+            type="password"
+            inputMode="numeric"
+            maxLength={4}
+            value={confirmPin}
+            onChange={(e) => setConfirmPin(e.target.value.replace(/\D/g, ""))}
+          />
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="settings-save-btn"
+        onClick={handleSetPin}
+        disabled={pinSaving || !newPin || !confirmPin}
+        style={{ marginBottom: 24 }}
+      >
+        {pinSaving
+          ? "Saving..."
+          : pinSaved
+            ? "PIN saved ✓"
+            : hasPin
+              ? "Update PIN"
+              : "Set PIN"}
       </button>
     </form>
   );
@@ -237,7 +368,12 @@ function SecurityTab() {
 
 function NotificationsTab() {
   const { user } = useAuth();
-  const [prefs, setPrefs] = useState({ email: true, push: true, sms: false, low_balance: true });
+  const [prefs, setPrefs] = useState({
+    email: true,
+    push: true,
+    sms: false,
+    low_balance: true,
+  });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -280,10 +416,26 @@ function NotificationsTab() {
   if (loading) return <p className="settings-loading">Loading...</p>;
 
   const rows = [
-    { key: "email", label: "Email notifications", hint: "Receipts, statements, and account updates" },
-    { key: "push", label: "Push notifications", hint: "Real-time alerts on your device" },
-    { key: "sms", label: "SMS alerts", hint: "Text messages for critical account activity" },
-    { key: "low_balance", label: "Low balance alerts", hint: "Notify me when an account drops below $100" },
+    {
+      key: "email",
+      label: "Email notifications",
+      hint: "Receipts, statements, and account updates",
+    },
+    {
+      key: "push",
+      label: "Push notifications",
+      hint: "Real-time alerts on your device",
+    },
+    {
+      key: "sms",
+      label: "SMS alerts",
+      hint: "Text messages for critical account activity",
+    },
+    {
+      key: "low_balance",
+      label: "Low balance alerts",
+      hint: "Notify me when an account drops below $100",
+    },
   ];
 
   return (
@@ -298,7 +450,11 @@ function NotificationsTab() {
             <span className="settings-switch-row__hint">{row.hint}</span>
           </span>
           <span className="settings-switch">
-            <input type="checkbox" checked={prefs[row.key]} onChange={() => toggle(row.key)} />
+            <input
+              type="checkbox"
+              checked={prefs[row.key]}
+              onChange={() => toggle(row.key)}
+            />
             <span className="settings-switch__track" />
           </span>
         </label>
@@ -336,9 +492,13 @@ function Settings() {
       </div>
 
       <div className="settings-profile-header">
-        <div className="settings-profile-header__avatar">{initials(headerName)}</div>
+        <div className="settings-profile-header__avatar">
+          {initials(headerName)}
+        </div>
         <div>
-          <span className="settings-profile-header__name">{headerName || "Your account"}</span>
+          <span className="settings-profile-header__name">
+            {headerName || "Your account"}
+          </span>
           <span className="settings-profile-header__email">{user?.email}</span>
         </div>
       </div>

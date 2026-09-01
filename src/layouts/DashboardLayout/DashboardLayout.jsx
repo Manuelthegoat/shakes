@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Outlet, Link } from "react-router-dom";
-import { LayoutGrid, ArrowLeftRight, CreditCard, Send, Settings, Menu, X, ShieldCheck } from "lucide-react";
+import { LayoutGrid, ArrowLeftRight, CreditCard, Send, Settings, Menu, X, ShieldCheck, Sparkles } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import "./DashboardLayout.css";
 
@@ -28,6 +28,7 @@ function DashboardLayout() {
         <button
           className="mobile-topbar__toggle"
           onClick={() => setIsOpen(true)}
+          aria-label="Open navigation menu"
         >
           <Menu size={22} />
         </button>
@@ -41,14 +42,16 @@ function DashboardLayout() {
       <aside className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
         <div className="sidebar__top">
           <Link to="/" className="sidebar__logo">
-            Horizon
+            <span className="sidebar__logo-mark"><Sparkles size={15} /></span>
+            <span>Horizon</span>
           </Link>
           <button className="sidebar__close" onClick={closeSidebar}>
             <X size={20} />
           </button>
         </div>
 
-        <nav className="sidebar__nav">
+        <nav className="sidebar__nav" aria-label="Main navigation">
+          <span className="sidebar__section-label">Workspace</span>
           {navItems.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}
@@ -79,7 +82,10 @@ function DashboardLayout() {
         <div className="sidebar__footer">
           <div className="sidebar__user">
             <div className="sidebar__avatar">{user?.name?.[0] || "?"}</div>
-            <span className="sidebar__username">{user?.name || "Guest"}</span>
+            <div className="sidebar__user-copy">
+              <span className="sidebar__user-label">Signed in as</span>
+              <span className="sidebar__username">{user?.name || "Guest"}</span>
+            </div>
           </div>
           <button className="sidebar__logout" onClick={logout}>
             Sign out

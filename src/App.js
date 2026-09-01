@@ -24,6 +24,7 @@ import Business from "./pages/Business/Business";
 import Support from "./pages/Support/Support";
 import ApplyCard from "./pages/ApplyCard/ApplyCard";
 import GuestRoute from "./components/GuestRoute/GuestRoute";
+import InfoPage from "./pages/Info/Info";
 import "./App.css";
 
 function Landing() {
@@ -72,6 +73,10 @@ function App() {
         <Route path="/personal" element={<Personal />} />
         <Route path="/business" element={<Business />} />
         <Route path="/support" element={<Support />} />
+        <Route path="/rates" element={<InfoPage />} />
+        {["checking", "savings", "credit", "transfers", "about", "careers", "press", "blog", "security", "status", "privacy", "terms", "accessibility"].map((slug) => (
+          <Route key={slug} path={`/${slug}`} element={<InfoPage />} />
+        ))}
         <Route
           path="/dashboard"
           element={

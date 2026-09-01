@@ -6,3 +6,252 @@
   color: var(--ink-500);
   font-size: 14px;
 }
+
+/* Shared responsive foundation for dashboard pages and public content. */
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .page {
+    gap: 24px;
+  }
+
+  .page__header {
+    gap: 20px;
+  }
+
+  .page__title {
+    font-size: clamp(24px, 4vw, 28px);
+  }
+
+  .activity,
+  .settings-card,
+  .transfer-card,
+  .apply-section {
+    border-radius: 14px;
+  }
+
+  .settings-card,
+  .transfer-card,
+  .apply-section {
+    padding: clamp(18px, 4vw, 28px);
+  }
+
+  .settings-layout {
+    gap: 16px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .page__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .page__action,
+  a.page__action {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .activity {
+    padding: 0 16px;
+  }
+
+  .activity__header {
+    padding: 16px 0 10px;
+  }
+
+  .activity__row {
+    gap: 9px;
+    padding: 14px 0;
+  }
+
+  .activity__row-name,
+  .activity__row-amount {
+    font-size: 13px;
+  }
+
+  .admin-filters {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 3px;
+    scrollbar-width: none;
+  }
+
+  .admin-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .admin-filter {
+    flex: 0 0 auto;
+  }
+
+  .admin-row {
+    gap: 9px;
+    padding: 14px 0;
+  }
+
+  .admin-badge {
+    font-size: 10px;
+    padding: 4px 7px;
+  }
+
+  .admin-row__meta {
+    line-height: 1.4;
+  }
+
+  .admin-detail__actions,
+  .card-action-buttons,
+  .card-modal__actions,
+  .auth-step-actions {
+    flex-direction: column;
+  }
+
+  .admin-approve,
+  .admin-reject,
+  .card-action-buttons__btn,
+  .card-modal__btn {
+    justify-content: center;
+    min-height: 42px;
+  }
+
+  .settings-profile-header {
+    padding: 18px;
+    margin-bottom: 16px;
+    border-radius: 14px;
+  }
+
+  .settings-tabs {
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .settings-tab {
+    flex: 1 0 auto;
+    justify-content: center;
+    padding: 10px 9px;
+    font-size: 12px;
+  }
+
+  .settings-card {
+    padding: 20px 16px;
+  }
+
+  .settings-save-btn {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .bank-card {
+    padding: 20px;
+    min-height: 160px;
+  }
+
+  .bank-card__number {
+    font-size: clamp(15px, 4vw, 18px);
+    letter-spacing: 1px;
+  }
+
+  .card-modal-overlay {
+    align-items: flex-end;
+    padding: 10px;
+  }
+
+  .card-modal {
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
+    border-radius: 18px;
+    padding: 20px 16px;
+  }
+
+  .transfer-card {
+    max-width: none;
+    width: 100%;
+  }
+
+  .account-option__balance {
+    font-size: 12px;
+  }
+
+  .quick-amounts {
+    gap: 6px;
+  }
+
+  .quick-amount {
+    padding: 10px 5px;
+  }
+
+  .apply-card-form {
+    max-width: none;
+    width: 100%;
+  }
+
+  .auth-form-side {
+    padding: 28px 20px;
+  }
+
+  .auth-form__title {
+    font-size: 24px;
+  }
+
+  .auth-field-row,
+  .apply-card-form__row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .apply-card-form__grid,
+  .apply-card-form__grid--three {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .primary-card {
+    padding: 22px 20px;
+    min-height: 164px;
+  }
+
+  .primary-card__balance {
+    font-size: 29px;
+  }
+
+  .mini-account {
+    padding: 12px;
+  }
+
+  .activity__row-date {
+    display: none;
+  }
+
+  .activity__row {
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+  }
+
+  .tx-search {
+    width: 100%;
+  }
+
+  .transfer-card,
+  .apply-section {
+    padding: 18px 14px;
+  }
+
+  .static-hero {
+    padding: 56px 18px;
+  }
+
+  .static-hero__title {
+    font-size: 30px;
+  }
+}

@@ -4,19 +4,19 @@ import "./Footer.css";
 const columns = [
   {
     title: "Banking",
-    links: ["Checking", "Savings", "Credit cards", "Transfers"],
+    links: [["Checking", "/checking"], ["Savings", "/savings"], ["Credit cards", "/credit"], ["Transfers", "/transfers"]],
   },
   {
     title: "Company",
-    links: ["About us", "Careers", "Press", "Blog"],
+    links: [["About us", "/about"], ["Careers", "/careers"], ["Press", "/press"], ["Blog", "/blog"]],
   },
   {
     title: "Support",
-    links: ["Help center", "Contact us", "Security", "Status"],
+    links: [["Help center", "/support"], ["Contact us", "/support#contact"], ["Security", "/security"], ["Status", "/status"]],
   },
   {
     title: "Legal",
-    links: ["Privacy policy", "Terms of service", "Accessibility"],
+    links: [["Privacy policy", "/privacy"], ["Terms of service", "/terms"], ["Accessibility", "/accessibility"]],
   },
 ];
 
@@ -34,8 +34,8 @@ function Footer() {
             {columns.map((col) => (
               <div className="footer__column" key={col.title}>
                 <span className="footer__column-title">{col.title}</span>
-                {col.links.map((link) => (
-                  <a href="/" className="footer__link" key={link}>{link}</a>
+                {col.links.map(([label, to]) => (
+                  <Link to={to} className="footer__link" key={label}>{label}</Link>
                 ))}
               </div>
             ))}
@@ -44,7 +44,7 @@ function Footer() {
 
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} Horizon. All rights reserved.</span>
-          <span>Member FDIC-style deposit protection (demo project)</span>
+          <span>Member FDIC-style deposit protection</span>
         </div>
       </div>
     </footer>

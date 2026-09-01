@@ -28,9 +28,19 @@
 }
 
 .how-it-works__steps {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+}
+
+.how-it-works__steps::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 17%;
+  right: 17%;
+  border-top: 1px dashed #b9d7f5;
 }
 
 .how-it-works__step {
@@ -82,4 +92,6 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
+  .how-it-works__steps::before { display: none; }
 }

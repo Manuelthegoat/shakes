@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Wallet,
   PiggyBank,
@@ -8,6 +9,9 @@ import {
   Plus,
   Copy,
   Check,
+  BarChart3,
+  Repeat2,
+  Sparkles as SparklesIcon,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../lib/supabaseClient";
@@ -75,6 +79,9 @@ function Dashboard() {
   const primary = accounts.find((a) => a.type === "checking") || accounts[0];
   const others = accounts.filter((a) => a.id !== primary?.id);
   const firstName = user?.user_metadata?.first_name;
+  const totalBalance = accounts.reduce((sum, account) => sum + Number(account.balance || 0), 0);
+  const recentIncome = recentActivity.filter((t) => Number(t.amount) > 0).reduce((sum, t) => sum + Number(t.amount), 0);
+  const recentSpending = recentActivity.filter((t) => Number(t.amount) < 0).reduce((sum, t) => sum + Math.abs(Number(t.amount)), 0);
 
   return (
     <div className="page">
@@ -85,10 +92,10 @@ function Dashboard() {
             Good afternoon{firstName ? `, ${firstName}` : ""}
           </h1>
         </div>
-        <button className="page__action">
+        <Link to="/dashboard/transfers" className="page__action">
           <Plus size={16} strokeWidth={2.5} />
           Quick transfer
-        </button>
+        </Link>
       </div>
 
       {!primary ? (
@@ -139,6 +146,45 @@ function Dashboard() {
           </div>
         </div>
       )}
+
+      <div className="dashboard-tools">
+        <div className="dashboard-panel dashboard-panel--actions">
+          <div className="dashboard-panel__heading">
+            <div>
+              <p className="dashboard-panel__eyebrow">Shortcuts</p>
+              <h2 className="dashboard-panel__title">What would you like to do?</h2>
+            </div>
+            <span className="dashboard-panel__spark"><SparklesIcon /></span>
+          </div>
+          <div className="dashboard-actions">
+            <Link to="/dashboard/transfers" className="dashboard-action-card">
+              <span className="dashboard-action-card__icon"><Repeat2 size={18} /></span>
+              <span><strong>Send money</strong><small>Move funds instantly</small></span>
+              <ArrowUpRight size={15} />
+            </Link>
+            <Link to="/dashboard/cards" className="dashboard-action-card">
+              <span className="dashboard-action-card__icon"><CreditCard size={18} /></span>
+              <span><strong>Manage cards</strong><small>View or apply for a card</small></span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </div>
+
+        <div className="dashboard-panel dashboard-panel--snapshot">
+          <div className="dashboard-panel__heading">
+            <div>
+              <p className="dashboard-panel__eyebrow">Your snapshot</p>
+              <h2 className="dashboard-panel__title">Money at a glance</h2>
+            </div>
+            <BarChart3 size={20} color="var(--brand-600)" />
+          </div>
+          <div className="snapshot-balance"><span>Total across accounts</span><strong>{formatCurrency(totalBalance)}</strong></div>
+          <div className="snapshot-stats">
+            <div><span className="snapshot-stats__dot snapshot-stats__dot--in" /><span>Recent in</span><strong>{formatCurrency(recentIncome)}</strong></div>
+            <div><span className="snapshot-stats__dot snapshot-stats__dot--out" /><span>Recent out</span><strong>{formatCurrency(recentSpending)}</strong></div>
+          </div>
+        </div>
+      </div>
 
       <div className="activity">
         <div className="activity__header">

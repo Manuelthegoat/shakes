@@ -1,9 +1,17 @@
 .hero {
-  background: linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 100%);
-  padding: 80px 24px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 78% 40%, rgba(26,124,232,.28), transparent 28%), linear-gradient(135deg, var(--navy-950) 0%, var(--navy-900) 100%);
+  padding: 104px 24px 116px;
 }
 
+.hero::before, .hero::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.08); border-radius: 50%; pointer-events: none; }
+.hero::before { width: 540px; height: 540px; right: -160px; top: -190px; }
+.hero::after { width: 720px; height: 720px; right: -250px; top: -280px; }
+
 .hero__inner {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -13,17 +21,31 @@
 }
 
 .hero__content {
-  max-width: 520px;
+  max-width: 590px;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #91caff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
 }
 
 .hero__title {
   color: #ffffff;
-  font-size: 44px;
+  font-size: clamp(42px, 5vw, 68px);
   font-weight: 700;
   line-height: 1.15;
-  letter-spacing: -0.5px;
+  letter-spacing: -1.8px;
   margin: 0 0 20px;
 }
+
+.hero__title em { color: #73baff; font-style: normal; }
 
 .hero__subtitle {
   color: var(--ink-300);
@@ -47,19 +69,26 @@
 }
 
 .hero__visual {
+  position: relative;
+  width: 430px;
+  min-height: 330px;
   flex-shrink: 0;
 }
 
 .hero__card {
   background: #ffffff;
-  border-radius: 12px;
-  padding: 28px 32px;
-  min-width: 280px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  border-radius: 22px;
+  padding: 28px;
+  min-width: 0;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.32);
+  background: linear-gradient(145deg, #ffffff 0%, #f1f7ff 100%);
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
+.hero__card-top, .hero__card-account { display: flex; justify-content: space-between; align-items: center; }
+.hero__card-status { display: inline-flex; align-items: center; gap: 4px; color: var(--positive-600); background: var(--positive-50); border-radius: 99px; padding: 5px 8px; font-size: 10px; font-weight: 700; }
 
 .hero__card-label {
   color: var(--ink-500);
@@ -69,17 +98,52 @@
 
 .hero__card-amount {
   color: var(--ink-900);
-  font-size: 32px;
+  font-size: 39px;
   font-weight: 700;
   letter-spacing: -0.5px;
 }
 
+.hero__card-account { color: var(--ink-500); font-size: 12px; margin-top: 18px; }
+.hero__card-chart { display: flex; align-items: end; gap: 9px; height: 62px; margin-top: 14px; border-bottom: 1px solid var(--line-200); }
+.hero__card-chart span { flex: 1; min-height: 20%; border-radius: 5px 5px 0 0; background: linear-gradient(180deg, #58a7f5, var(--brand-600)); }
+.hero__card-chart span:nth-child(2) { height: 42%; } .hero__card-chart span:nth-child(3) { height: 35%; } .hero__card-chart span:nth-child(4) { height: 58%; } .hero__card-chart span:nth-child(5) { height: 48%; } .hero__card-chart span:nth-child(6) { height: 75%; } .hero__card-chart span:nth-child(7) { height: 100%; }
+.hero__float { position: absolute; display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.96); color: var(--ink-900); border: 1px solid rgba(255,255,255,.8); border-radius: 14px; padding: 12px 14px; box-shadow: 0 15px 35px rgba(0,0,0,.2); }
+.hero__float strong, .hero__float small { display: block; } .hero__float strong { font-size: 13px; } .hero__float small { color: var(--ink-500); font-size: 10px; margin-top: 3px; }
+.hero__float--growth { left: -28px; top: 26px; color: var(--positive-600); }
+.hero__float--payment { right: -28px; bottom: 36px; }
+.hero__float-icon { display: flex; padding: 8px; color: var(--brand-600); background: var(--brand-100); border-radius: 9px; }
+.hero__caption { position: absolute; right: 0; bottom: -4px; color: var(--ink-300); font-size: 11px; font-style: italic; }
+
 @media (max-width: 768px) {
+  .hero {
+    padding: 64px 18px 72px;
+  }
+
   .hero__inner {
     flex-direction: column;
     text-align: center;
   }
   .hero__title {
-    font-size: 32px;
+    font-size: clamp(30px, 8vw, 36px);
   }
+
+  .hero__actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero__visual,
+  .hero__card {
+    width: 100%;
+  }
+
+  .hero__visual { min-height: 330px; }
+
+  .hero__card {
+    min-width: 0;
+    padding: 22px 24px;
+  }
+
+  .hero__float--growth { left: -4px; }
+  .hero__float--payment { right: -4px; }
 }
